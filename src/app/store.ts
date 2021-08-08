@@ -1,9 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import expensesReducer from '../slices/expensesSlice';
+import wagesReducer from '../slices/wagesSlice';
+import chartReducer from '../slices/chartSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    expenses: expensesReducer,
+    wages: wagesReducer,
+    chart: chartReducer,
   },
 });
 

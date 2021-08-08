@@ -1,56 +1,72 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { useAppDispatch, useAppSelector } from './app/hooks';
+import { addExpense, bulkAddExpenses, removeExpense, selectExpenses, updateExpense } from './slices/expensesSlice';
+import { addWage, bulkAddWages, removeWage, selectWages, updateWage } from './slices/wagesSlice';
+import { Expense } from './common/expense';
+import { Wage } from './common/wage';
+import { DataTable } from './components/Table';
+import DataChart from './components/DataChart';
+import { setEndTimeMs, setStartTimeMs } from './slices/chartSlice';
+import { IDataRow } from './common/idatarow';
+import { MILLIS_PER_WEEK } from './utilities/date-utils';
+
 
 function App() {
+  const expenses = useAppSelector(selectExpenses);
+  const wages = useAppSelector(selectWages);
+
+  const dispatch = useAppDispatch();
+  function handleCreateExpense(expense?: Expense) {
+    dispatch(addExpense(expense ? expense : null))
+  }
+  function handleCreateWage(wage?: Wage) {
+    dispatch(addWage(wage ? wage : null))
+  }
+
+  function handleUpdateWage(id: string, wage: Partial<Wage>) {
+    dispatch(updateWage({ id: id, wage: wage }))
+  }
+
+  function handleUpdateExpense(id: string, expense: Partial<Expense>) {
+    dispatch(updateExpense({ id: id, expense: expense }))
+  }
+
+  function handleRemoveWage(id: string) {
+    dispatch(removeWage({ id: id }))
+  }
+
+  function handleRemoveExpense(id: string) {
+    dispatch(removeExpense({ id: id }))
+  }
+
+  function handleImportExpensesComplete(data: IDataRow[]) {
+    const expensesTimeArr = Object.values(data).map((val) => val.date);
+    const minTime = Math.min(...expensesTimeArr);
+    const maxTime = Math.max(...expensesTimeArr);
+    dispatch(bulkAddExpenses(data));
+    dispatch(setStartTimeMs(minTime));
+    // set end time to at least a week from the start time
+    const endTimeMillis = maxTime - minTime > MILLIS_PER_WEEK ? maxTime : minTime + MILLIS_PER_WEEK;
+    dispatch(setEndTimeMs(endTimeMillis));
+  }
+
+  function handleImportWagesComplete(data: IDataRow[]) {
+    const expensesTimeArr = Object.values(data).map((val) => val.date);
+    const minTime = Math.min(...expensesTimeArr);
+    const maxTime = Math.max(...expensesTimeArr);
+    dispatch(bulkAddWages(data));
+    dispatch(setStartTimeMs(minTime));
+    // set end time to at least a week from the start time
+    const endTimeMillis = maxTime - minTime > MILLIS_PER_WEEK ? maxTime : minTime + MILLIS_PER_WEEK;
+    dispatch(setEndTimeMs(endTimeMillis));
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div>
+      <div style={{ textAlign: 'center' }}><h1>Financial Planner</h1></div>
+      <DataChart></DataChart>
+      <DataTable title={"Income"} data={wages} addRow={handleCreateWage} updateRow={handleUpdateWage} deleteRow={handleRemoveWage} onImportComplete={handleImportWagesComplete}></DataTable>
+      <DataTable title={"Expenses"} data={expenses} addRow={handleCreateExpense} updateRow={handleUpdateExpense} deleteRow={handleRemoveExpense} onImportComplete={handleImportExpensesComplete}></DataTable>
     </div>
   );
 }
