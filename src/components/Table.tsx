@@ -3,16 +3,13 @@ import './Table.css'
 
 import { IDataRow } from '../common/idatarow';
 import { convertCSVRowIntoDataRow, convertDataRowIntoCSVRows, createCSV } from '../utilities/csv-utils'
-import { IFrequency } from '../common/common-types';
 import { DataRow } from './DataRow';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
@@ -82,7 +79,7 @@ export function DataTable(props: ITableProps) {
                     {Object.entries(props.data).map((entry) => {
                         const uuid = entry[0];
                         const row = entry[1];
-                        return <DataRow key={uuid} uuid={uuid} data={props.data[uuid]} addRow={props.addRow} updateRow={props.updateRow} deleteRow={props.deleteRow}></DataRow>
+                        return <DataRow key={uuid} uuid={uuid} data={row} addRow={props.addRow} updateRow={props.updateRow} deleteRow={props.deleteRow}></DataRow>
                     })}
                 </TableBody>
             </Table>
