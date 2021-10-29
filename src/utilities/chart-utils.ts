@@ -95,7 +95,7 @@ function generateRecurringChartData(
 ) {
   const date = new Date(data.date);
   const retVal: ChartPoint[] = [];
-  if (data.frequency === 'once') {
+  if (data.frequency === 'once' || !(endDateMs > startDateMs)) {
     retVal.push({ date: date.getTime(), amount: data.amount });
   } else {
     let timeMs = date.getTime();

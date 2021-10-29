@@ -153,6 +153,7 @@ export default function DataChart() {
                     label="Aggregate"
                     value={aggregateOption}
                     onChange={handleAggregateOptionChange}
+                    margin="normal"
                 >
                     <MenuItem value={"day"}>Day</MenuItem>
                     <MenuItem value={"month"}>Month</MenuItem>
