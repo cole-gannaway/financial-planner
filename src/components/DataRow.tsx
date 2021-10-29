@@ -18,29 +18,15 @@ export interface IDataRowProps {
     deleteRow: (id: string) => void;
 }
 export function DataRow(props: IDataRowProps) {
-    const [label, setLabel] = useState(props.data.label);
-    const [date, setDate] = useState(props.data.date);
-    const [amount, setAmount] = useState(props.data.amount);
-    const [frequency, setFrequency] = useState(props.data.frequency);
-
-    function handleDateChange() {
-        props.updateRow(props.uuid, {
-            label: label,
-            date: date,
-            amount: amount,
-            frequency: frequency
-        });
-    }
-
     return <TableRow>
-        <TableCell className="label-form"><TextField value={props.data.label} onChange={(e) => setLabel(e.target.value)}></TextField></TableCell>
+        <TableCell className="label-form"><TextField value={props.data.label} onChange={(e) => props.updateRow(props.uuid, { label: e.target.value })}></TextField></TableCell>
         <TableCell className="label-date">
-            <DatePickerWrapper value={props.data.date} label={"Date"} onChange={(date: number) => setDate(date)}></DatePickerWrapper>
+            <DatePickerWrapper value={props.data.date} label={"Date"} onChange={(date: number) => props.updateRow(props.uuid, { date: date })}></DatePickerWrapper>
         </TableCell>
         <TableCell>
             <TextField type="number" value={props.data.amount} onChange={(e) => {
                 const amount = parseFloat(e.target.value);
-                if (amount) setAmount(amount);
+                if (amount) props.updateRow(props.uuid, { amount: amount });
             }}></TextField>
         </TableCell>
         <TableCell>
@@ -49,8 +35,8 @@ export function DataRow(props: IDataRowProps) {
                 select
                 label="Frequency"
                 value={props.data.frequency}
-                onChange={(e) => setFrequency(e.target.value as IFrequency)}
-                onMouseLeave={handleDateChange}
+                onChange={(e) => props.updateRow(props.uuid, { frequency: e.target.value as IFrequency })}
+                onMouseLeave={() => { }}
                 margin="normal"
             >
                 <MenuItem value='once'>Once</MenuItem>
