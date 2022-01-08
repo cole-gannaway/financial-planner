@@ -2,7 +2,7 @@
   "name": "financial-planner",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://cole-gannaway.github.io/financial-planner/",
+  "homepage": ".",
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",
     "@material-ui/core": "^4.12.3",

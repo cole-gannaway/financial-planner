@@ -8,7 +8,6 @@ import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { MenuItem } from "@material-ui/core";
 import { TextField } from '@material-ui/core';
-import { useState } from 'react';
 
 export interface IDataRowProps {
     uuid: string;

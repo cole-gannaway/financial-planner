@@ -128,7 +128,7 @@ export default function DataChart() {
             finances: chartData.finances
         }))
 
-    }, [wagesData, expensesData, aggregateOption, startTimeMs, endTimeMs])
+    }, [dispatch, wagesData, expensesData, aggregateOption, startTimeMs, endTimeMs])
 
     function handleAggregateOptionChange(event: any) {
         const option: AggregateOption = event.target.value as AggregateOption;
