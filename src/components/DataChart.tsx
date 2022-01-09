@@ -9,6 +9,7 @@ import { selectExpenses } from "../slices/expensesSlice";
 import { selectWages } from "../slices/wagesSlice";
 import { convertDataRowsIntoChartData } from "../utilities/chart-utils";
 import { DatePickerWrapper } from "./DatePickerWrapper";
+import { FormControl, InputLabel, Select } from "@mui/material";
 Chart.register(Legend, LineController, LineElement, PointElement, LinearScale, TimeScale, Title, Tooltip);
 
 const chartConfig: any = {
@@ -144,21 +145,23 @@ export default function DataChart() {
 
     return (
         <div>
-            <div>
+            <div style={{ minWidth: 500 }}>
                 <DatePickerWrapper value={startTimeMs} label={"Start Time"} onChange={handleStartTimeChange}></DatePickerWrapper>
                 <DatePickerWrapper value={endTimeMs} label={"End Time"} onChange={handleEndTimeChange}></DatePickerWrapper>
-                <TextField
-                    id="aggregate-by"
-                    select
-                    label="Aggregate"
-                    value={aggregateOption}
-                    onChange={handleAggregateOptionChange}
-                    margin="normal"
-                >
-                    <MenuItem value={"day"}>Day</MenuItem>
-                    <MenuItem value={"month"}>Month</MenuItem>
-                    <MenuItem value={"year"}>Year</MenuItem>
-                </TextField>
+                <FormControl >
+                    <InputLabel id="aggregate-by-label">Aggregate</InputLabel>
+                    <Select
+                        labelId="aggregate-by-label"
+                        id="aggregate-by"
+                        label="Aggregate"
+                        value={aggregateOption}
+                        onChange={handleAggregateOptionChange}
+                    >
+                        <MenuItem value={"day"}>Day</MenuItem>
+                        <MenuItem value={"month"}>Month</MenuItem>
+                        <MenuItem value={"year"}>Year</MenuItem>
+                    </Select>
+                </FormControl>
             </div>
             <div>
                 <canvas ref={chartContainer} />
