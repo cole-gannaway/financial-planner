@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import 'chartjs-adapter-moment';
 import { Chart, Legend, LineController, LineElement, PointElement, LinearScale, TimeScale, Title, Tooltip } from 'chart.js';
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { MenuItem, TextField } from "@material-ui/core";
+import { MenuItem } from "@material-ui/core";
 import { selectChartExpenses, selectChartFinances, selectChartAgggregateOption, selectChartWages, setChartData, setAgggregateOption, selectChartStartTimeMs, selectChartEndTimeMs, setStartTimeMs, setEndTimeMs } from "../slices/chartSlice";
 import { AggregateOption } from "../common/common-types";
 import { selectExpenses } from "../slices/expensesSlice";

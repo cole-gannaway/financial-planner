@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { MenuItem } from "@material-ui/core";
 import { TextField } from '@material-ui/core';
-import { FormControl, InputLabel, Select } from '@mui/material';
+import { FormControl, Select } from '@mui/material';
 
 export interface IDataRowProps {
     uuid: string;
