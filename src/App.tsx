@@ -55,21 +55,17 @@ function App() {
     const minTime = Math.min(...expensesTimeArr);
     const maxTime = Math.max(...expensesTimeArr);
     dispatch(bulkAddExpenses(data));
-    dispatch(setStartTimeMs(minTime));
-    // set end time to at least a week from the start time
-    const endTimeMillis = maxTime - minTime > MILLIS_PER_WEEK ? maxTime : minTime + MILLIS_PER_WEEK;
-    dispatch(setEndTimeMs(endTimeMillis));
+    dispatch(setStartTimeMs(Math.min(startTimeMs, minTime)));
+    dispatch(setEndTimeMs(Math.max(endTimeMs, maxTime)));
   }
 
   function handleImportWagesComplete(data: IDataRow[]) {
-    const expensesTimeArr = Object.values(data).map((val) => val.date);
-    const minTime = Math.min(...expensesTimeArr);
-    const maxTime = Math.max(...expensesTimeArr);
+    const wagesTimeArr = Object.values(data).map((val) => val.date);
+    const minTime = Math.min(...wagesTimeArr);
+    const maxTime = Math.max(...wagesTimeArr);
     dispatch(bulkAddWages(data));
-    dispatch(setStartTimeMs(minTime));
-    // set end time to at least a week from the start time
-    const endTimeMillis = maxTime - minTime > MILLIS_PER_WEEK ? maxTime : minTime + MILLIS_PER_WEEK;
-    dispatch(setEndTimeMs(endTimeMillis));
+    dispatch(setStartTimeMs(Math.min(startTimeMs, minTime)));
+    dispatch(setEndTimeMs(Math.max(endTimeMs, maxTime)));
   }
 
   return (
