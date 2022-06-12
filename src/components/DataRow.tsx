@@ -6,9 +6,7 @@ import { IFrequency } from '../common/common-types';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { MenuItem } from "@material-ui/core";
-import { TextField } from '@material-ui/core';
-import { FormControl, Select } from '@mui/material';
+import { FormControl, MenuItem, Select, TextField } from '@mui/material';
 
 export interface IDataRowProps {
     uuid: string;

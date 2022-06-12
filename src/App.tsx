@@ -6,7 +6,7 @@ import { Expense } from './common/expense';
 import { Wage } from './common/wage';
 import { DataTable } from './components/Table';
 import DataChart from './components/DataChart';
-import { setEndTimeMs, setStartTimeMs } from './slices/chartSlice';
+import { selectChartEndTimeMs, selectChartStartTimeMs, setEndTimeMs, setStartTimeMs } from './slices/chartSlice';
 import { IDataRow } from './common/idatarow';
 import { MILLIS_PER_WEEK } from './utilities/date-utils';
 
@@ -14,6 +14,9 @@ import { MILLIS_PER_WEEK } from './utilities/date-utils';
 function App() {
   const expenses = useAppSelector(selectExpenses);
   const wages = useAppSelector(selectWages);
+
+  const startTimeMs = useAppSelector(selectChartStartTimeMs);
+  const endTimeMs = useAppSelector(selectChartEndTimeMs);
 
   const dispatch = useAppDispatch();
   function handleCreateExpense(expense?: Expense) {
@@ -25,10 +28,18 @@ function App() {
 
   function handleUpdateWage(id: string, wage: Partial<Wage>) {
     dispatch(updateWage({ id: id, wage: wage }))
+    if (wage.date) handleChartDateChange(wage.date)
   }
 
   function handleUpdateExpense(id: string, expense: Partial<Expense>) {
     dispatch(updateExpense({ id: id, expense: expense }))
+    if (expense.date) handleChartDateChange(expense.date);
+  }
+
+  /** Changes the chart date start and end time if the data changes */
+  function handleChartDateChange(newDate: number){
+    if (newDate < startTimeMs) dispatch(setStartTimeMs(newDate));
+    if (newDate > endTimeMs)  dispatch(setEndTimeMs(newDate));
   }
 
   function handleRemoveWage(id: string) {
@@ -67,6 +78,9 @@ function App() {
       <DataChart></DataChart>
       <DataTable title={"Income"} data={wages} addRow={handleCreateWage} updateRow={handleUpdateWage} deleteRow={handleRemoveWage} onImportComplete={handleImportWagesComplete}></DataTable>
       <DataTable title={"Expenses"} data={expenses} addRow={handleCreateExpense} updateRow={handleUpdateExpense} deleteRow={handleRemoveExpense} onImportComplete={handleImportExpensesComplete}></DataTable>
+      <br></br>
+      <br></br>
+      <br></br>
     </div>
   );
 }

@@ -2,14 +2,13 @@ import React, { useEffect, useRef } from "react";
 import 'chartjs-adapter-moment';
 import { Chart, Legend, LineController, LineElement, PointElement, LinearScale, TimeScale, Title, Tooltip } from 'chart.js';
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { MenuItem } from "@material-ui/core";
 import { selectChartExpenses, selectChartFinances, selectChartAgggregateOption, selectChartWages, setChartData, setAgggregateOption, selectChartStartTimeMs, selectChartEndTimeMs, setStartTimeMs, setEndTimeMs } from "../slices/chartSlice";
 import { AggregateOption } from "../common/common-types";
 import { selectExpenses } from "../slices/expensesSlice";
 import { selectWages } from "../slices/wagesSlice";
 import { convertDataRowsIntoChartData } from "../utilities/chart-utils";
 import { DatePickerWrapper } from "./DatePickerWrapper";
-import { FormControl, InputLabel, Select } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 Chart.register(Legend, LineController, LineElement, PointElement, LinearScale, TimeScale, Title, Tooltip);
 
 const chartConfig: any = {
