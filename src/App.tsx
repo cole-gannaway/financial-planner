@@ -8,7 +8,6 @@ import { DataTable } from './components/Table';
 import DataChart from './components/DataChart';
 import { selectChartEndTimeMs, selectChartStartTimeMs, setEndTimeMs, setStartTimeMs } from './slices/chartSlice';
 import { IDataRow } from './common/idatarow';
-import { MILLIS_PER_WEEK } from './utilities/date-utils';
 
 
 function App() {
