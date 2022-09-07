@@ -69,10 +69,16 @@ function App() {
 
   return (
     <div>
-      <div style={{ textAlign: 'center' }}><h1>Financial Planner</h1></div>
-      <DataChart></DataChart>
-      <DataTable title={"Income"} data={wages} addRow={handleCreateWage} updateRow={handleUpdateWage} deleteRow={handleRemoveWage} onImportComplete={handleImportWagesComplete}></DataTable>
-      <DataTable title={"Expenses"} data={expenses} addRow={handleCreateExpense} updateRow={handleUpdateExpense} deleteRow={handleRemoveExpense} onImportComplete={handleImportExpensesComplete}></DataTable>
+      <div style={{ textAlign: 'center', minWidth: 700 }}><h1>Financial Planner</h1></div>
+      <div style={{ textAlign: 'center', minWidth: 700 }}>
+        <DataChart></DataChart>
+      </div>
+      <div style={{ textAlign: 'center', minWidth: 700 }}>
+        <DataTable title={"Income"} data={wages} addRow={handleCreateWage} updateRow={handleUpdateWage} deleteRow={handleRemoveWage} onImportComplete={handleImportWagesComplete}></DataTable>
+      </div>
+      <div style={{ textAlign: 'center', minWidth: 700 }}>
+        <DataTable title={"Expenses"} data={expenses} addRow={handleCreateExpense} updateRow={handleUpdateExpense} deleteRow={handleRemoveExpense} onImportComplete={handleImportExpensesComplete}></DataTable>
+      </div>
       <br></br>
       <br></br>
       <br></br>

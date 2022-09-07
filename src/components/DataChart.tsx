@@ -144,7 +144,7 @@ export default function DataChart() {
 
     return (
         <div>
-            <div style={{ minWidth: 500 }}>
+            <div>
                 <DatePickerWrapper value={startTimeMs} label={"Start Time"} onChange={handleStartTimeChange}></DatePickerWrapper>
                 <DatePickerWrapper value={endTimeMs} label={"End Time"} onChange={handleEndTimeChange}></DatePickerWrapper>
                 <FormControl >
@@ -162,8 +162,10 @@ export default function DataChart() {
                     </Select>
                 </FormControl>
             </div>
-            <div>
-                <canvas ref={chartContainer} />
+            <div style={{maxWidth:1000, margin:"0 auto"}}>
+                <div style={{ display:"block"}} >
+                    <canvas  ref={chartContainer} />
+                </div>
             </div>
         </div>
     );

@@ -64,12 +64,12 @@ export function DataTable(props: ITableProps) {
 
     return <div>
         <div style={{ textAlign: 'center' }}><h3>{props.title} <AddCircleOutlineIcon onClick={handleAddRow} /></h3></div>
-        <div style={{ maxHeight: 400, overflowX: 'auto' }}>
+        <div style={{ maxHeight: 400, maxWidth: 1000, display:"block", margin:"0 auto", overflowX: 'auto' }}>
             <Table stickyHeader >
                 <TableHead>
                     <TableRow>
-                        <TableCell>Label </TableCell>
-                        <TableCell>Date</TableCell>
+                        <TableCell className="label-form">Label </TableCell>
+                        <TableCell className="label-date">Date</TableCell>
                         <TableCell>Amount</TableCell>
                         <TableCell>Frequency</TableCell>
                         <TableCell>X</TableCell>
