@@ -23,7 +23,7 @@ export function DataRow(props: IDataRowProps) {
             <DatePickerWrapper value={props.data.date} onChange={(date: number) => props.updateRow(props.uuid, { date: date })}></DatePickerWrapper>
         </TableCell>
         <TableCell>
-            <TextField type="number" variant="outlined" value={props.isExpensesRow? (-1 * props.data.amount) : props.data.amount} onChange={(e) => {
+            <TextField type="number" inputProps={{ pattern:"[0-9]*"}} variant="outlined" value={props.isExpensesRow? (-1 * props.data.amount) : props.data.amount} onChange={(e) => {
                 const amount = parseFloat(e.target.value);
                 if (amount) props.updateRow(props.uuid, { amount: props.isExpensesRow? (-1 * amount) : amount });
             }}></TextField>
