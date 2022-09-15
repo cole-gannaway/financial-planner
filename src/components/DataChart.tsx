@@ -144,9 +144,9 @@ export default function DataChart() {
 
     return (
         <div>
-            <div>
-                <DatePickerWrapper value={startTimeMs} label={"Start Time"} onChange={handleStartTimeChange}></DatePickerWrapper>
-                <DatePickerWrapper value={endTimeMs} label={"End Time"} onChange={handleEndTimeChange}></DatePickerWrapper>
+            <div style={{width:150, display: "inline-block"}}><DatePickerWrapper value={startTimeMs} label={"Start Time"} onChange={handleStartTimeChange}></DatePickerWrapper></div>
+            <div style={{width:150, display: "inline-block"}}><DatePickerWrapper value={endTimeMs} label={"End Time"} onChange={handleEndTimeChange}></DatePickerWrapper></div>
+            <div style={{display: "inline-block"}}>
                 <FormControl >
                     <InputLabel id="aggregate-by-label">Aggregate</InputLabel>
                     <Select
