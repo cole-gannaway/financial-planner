@@ -1,5 +1,4 @@
 import React from 'react';
-import './Table.css'
 
 import { IDataRow } from '../common/idatarow';
 import { convertCSVRowIntoDataRow, convertDataRowIntoCSVRows, createCSV } from '../utilities/csv-utils'
@@ -69,11 +68,11 @@ export function DataTable(props: ITableProps) {
             <Table stickyHeader >
                 <TableHead>
                     <TableRow>
-                        <TableCell className="label-form">Label </TableCell>
-                        <TableCell className="label-date">Date</TableCell>
-                        <TableCell>Amount</TableCell>
-                        <TableCell>Frequency</TableCell>
-                        <TableCell>X</TableCell>
+                        <TableCell style={{width:150}}>Label </TableCell>
+                        <TableCell style={{width:100}}>Date</TableCell>
+                        <TableCell style={{width:80}}>Amount</TableCell>
+                        <TableCell style={{width:100}}>Frequency</TableCell>
+                        <TableCell style={{width:40}}></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody >
