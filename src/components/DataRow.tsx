@@ -11,6 +11,7 @@ import { FormControl, MenuItem, Select, TextField } from '@mui/material';
 export interface IDataRowProps {
     uuid: string;
     data: IDataRow;
+    isExpensesRow: boolean;
     addRow: (data?: IDataRow) => void;
     updateRow: (id: string, row: Partial<IDataRow>) => void;
     deleteRow: (id: string) => void;
@@ -22,9 +23,9 @@ export function DataRow(props: IDataRowProps) {
             <DatePickerWrapper value={props.data.date} onChange={(date: number) => props.updateRow(props.uuid, { date: date })}></DatePickerWrapper>
         </TableCell>
         <TableCell>
-            <TextField type="number" variant="outlined" value={props.data.amount} onChange={(e) => {
+            <TextField type="number" variant="outlined" value={props.isExpensesRow? (-1 * props.data.amount) : props.data.amount} onChange={(e) => {
                 const amount = parseFloat(e.target.value);
-                if (amount) props.updateRow(props.uuid, { amount: amount });
+                if (amount) props.updateRow(props.uuid, { amount: props.isExpensesRow? (-1 * amount) : amount });
             }}></TextField>
         </TableCell>
         <TableCell>

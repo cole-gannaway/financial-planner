@@ -19,6 +19,7 @@ import { parse } from 'papaparse';
 export interface ITableProps {
     title: string;
     data: { [id: string]: IDataRow; }
+    isExpensesTable: boolean;
     addRow: (data?: IDataRow) => void;
     updateRow: (id: string, row: Partial<IDataRow>) => void;
     deleteRow: (id: string) => void;
@@ -79,7 +80,7 @@ export function DataTable(props: ITableProps) {
                     {Object.entries(props.data).map((entry) => {
                         const uuid = entry[0];
                         const row = entry[1];
-                        return <DataRow key={uuid} uuid={uuid} data={row} addRow={props.addRow} updateRow={props.updateRow} deleteRow={props.deleteRow}></DataRow>
+                        return <DataRow key={uuid} uuid={uuid} data={row} isExpensesRow={props.isExpensesTable} addRow={props.addRow} updateRow={props.updateRow} deleteRow={props.deleteRow}></DataRow>
                     })}
                 </TableBody>
             </Table>

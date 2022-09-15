@@ -74,10 +74,10 @@ function App() {
         <DataChart></DataChart>
       </div>
       <div style={{ textAlign: 'center', minWidth: 700 }}>
-        <DataTable title={"Income"} data={wages} addRow={handleCreateWage} updateRow={handleUpdateWage} deleteRow={handleRemoveWage} onImportComplete={handleImportWagesComplete}></DataTable>
+        <DataTable title={"Income"} data={wages} addRow={handleCreateWage} updateRow={handleUpdateWage} deleteRow={handleRemoveWage} onImportComplete={handleImportWagesComplete} isExpensesTable={false}></DataTable>
       </div>
       <div style={{ textAlign: 'center', minWidth: 700 }}>
-        <DataTable title={"Expenses"} data={expenses} addRow={handleCreateExpense} updateRow={handleUpdateExpense} deleteRow={handleRemoveExpense} onImportComplete={handleImportExpensesComplete}></DataTable>
+        <DataTable title={"Expenses"} data={expenses} addRow={handleCreateExpense} updateRow={handleUpdateExpense} deleteRow={handleRemoveExpense} onImportComplete={handleImportExpensesComplete} isExpensesTable={true}></DataTable>
       </div>
       <br></br>
       <br></br>
