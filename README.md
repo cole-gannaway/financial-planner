@@ -53,7 +53,7 @@ The Financial Planner website utilizes the following technologies:
 
 ## Contributing
 
-As this website is the personal project of Cole Gannaway, external contributions are not accepted at this time.
+I appreciate your interest in contributing to my personal portfolio website. If you find any issues or have suggestions for improvement, please feel free to open an issue or submit a pull request.
 
 ## License
 
