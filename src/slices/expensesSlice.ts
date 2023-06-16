@@ -7,7 +7,20 @@ export interface ExpensesState {
   [id: string]: Expense;
 }
 
-const initialState: ExpensesState = {};
+const initialState: ExpensesState = {
+  "077c4cfc-aae7-4b3a-8e93-911640aa0121": {
+    "label": "Rent",
+    "date": 1685674404000,
+    "amount": -2000,
+    "frequency": "monthly"
+  },
+  "81026ad5-10f7-447b-8646-39e0df49dcca": {
+    "label": "Gym",
+    "date": 1685674415000,
+    "amount": -100,
+    "frequency": "monthly"
+  }
+};
 
 export const expensesSlice = createSlice({
   name: 'expenses',
