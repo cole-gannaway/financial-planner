@@ -122,6 +122,7 @@ function App() {
     <TourProvider
       steps={steps}
       defaultOpen={true}
+      scrollSmooth={true}
     >
     <div style={{ textAlign: 'center', minWidth: 700 }}><h1 className="title">Financial Planner</h1></div>
     <div style={{ textAlign: 'center', minWidth: 700 }}>
