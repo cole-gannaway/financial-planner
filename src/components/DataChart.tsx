@@ -16,7 +16,7 @@ const chartConfig: any = {
     data: {
         datasets: [
             {
-                label: 'Wallet',
+                label: 'Net Worth',
                 fill: true,
                 backgroundColor: "rgb(150, 105, 25, 0.8)",
                 borderColor: "rgb(150, 105, 25, 1)",
@@ -148,7 +148,7 @@ export default function DataChart() {
 
     return (
         <div>
-            <div style={{display: "flex", justifyContent: "center", alignContent: "center", margin:"10px"}}>
+            <div style={{display: "flex", justifyContent: "center", alignContent: "center", margin:"10px"}} className="chartConfiguration">
                 <div style={{width:200, margin:"10px"}}><DatePickerWrapperMax value={startTimeMs} label={"Start Time"} onChange={handleStartTimeChange} maxDate={endTimeMs}></DatePickerWrapperMax></div>
                 <div style={{width:200, margin:"10px"}}><DatePickerWrapperMin value={endTimeMs} label={"End Time"} onChange={handleEndTimeChange} minDate={startTimeMs}></DatePickerWrapperMin></div>
                 <div style={{width:100, margin:"10px", transform: "translate(0,10px)"}}>
@@ -169,7 +169,7 @@ export default function DataChart() {
                     </FormControl>
                 </div>
             </div>
-            <div style={{maxWidth:1000, margin:"0 auto"}}>
+            <div className="chartContainer" style={{maxWidth:1000, margin:"0 auto"}}>
                 <div style={{ display:"block"}} >
                     <canvas  ref={chartContainer} />
                 </div>
