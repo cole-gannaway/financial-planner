@@ -9,7 +9,6 @@ import DataChart from './components/DataChart';
 import { selectChartEndTimeMs, selectChartStartTimeMs, setEndTimeMs, setStartTimeMs } from './slices/chartSlice';
 import { IDataRow } from './common/idatarow';
 
-
 function App() {
   const expenses = useAppSelector(selectExpenses);
   const wages = useAppSelector(selectWages);
@@ -69,20 +68,20 @@ function App() {
 
   return (
     <div>
-      <div style={{ textAlign: 'center', minWidth: 700 }}><h1>Financial Planner</h1></div>
-      <div style={{ textAlign: 'center', minWidth: 700 }}>
-        <DataChart></DataChart>
-      </div>
-      <div style={{ textAlign: 'center', minWidth: 700 }}>
-        <DataTable title={"Income"} data={wages} addRow={handleCreateWage} updateRow={handleUpdateWage} deleteRow={handleRemoveWage} onImportComplete={handleImportWagesComplete} isExpensesTable={false}></DataTable>
-      </div>
-      <div style={{ textAlign: 'center', minWidth: 700 }}>
-        <DataTable title={"Expenses"} data={expenses} addRow={handleCreateExpense} updateRow={handleUpdateExpense} deleteRow={handleRemoveExpense} onImportComplete={handleImportExpensesComplete} isExpensesTable={true}></DataTable>
-      </div>
-      <br></br>
-      <br></br>
-      <br></br>
+    <div style={{ textAlign: 'center', minWidth: 700 }}><h1>Financial Planner</h1></div>
+    <div style={{ textAlign: 'center', minWidth: 700 }}>
+      <DataChart></DataChart>
     </div>
+    <div style={{ textAlign: 'center', minWidth: 700 }}>
+      <DataTable title={"Income"} data={wages} addRow={handleCreateWage} updateRow={handleUpdateWage} deleteRow={handleRemoveWage} onImportComplete={handleImportWagesComplete} isExpensesTable={false}></DataTable>
+    </div>
+    <div style={{ textAlign: 'center', minWidth: 700 }}>
+      <DataTable title={"Expenses"} data={expenses} addRow={handleCreateExpense} updateRow={handleUpdateExpense} deleteRow={handleRemoveExpense} onImportComplete={handleImportExpensesComplete} isExpensesTable={true}></DataTable>
+    </div>
+    <br></br>
+    <br></br>
+    <br></br>
+  </div>
   );
 }
 

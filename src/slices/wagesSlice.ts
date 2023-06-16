@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import { Wage } from '../common/wage';
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 
 export interface WagesState {
   [id: string]: Wage;
