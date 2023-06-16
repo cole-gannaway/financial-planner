@@ -1,13 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import { Wage } from '../common/wage';
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 
 export interface WagesState {
   [id: string]: Wage;
 }
 
-const initialState: WagesState = {};
+const initialState: WagesState = {
+  "744afa22-dc61-4b55-ac21-a256417ba0d1": {
+    "label": "Paycheck",
+    "date": 1685674294000,
+    "amount": 1000,
+    "frequency": "weekly"
+  }
+};
 
 export const wageSlice = createSlice({
   name: 'wage',

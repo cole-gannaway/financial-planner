@@ -84,8 +84,10 @@ export function DataTable(props: ITableProps) {
                 </TableBody>
             </Table>
         </div>
-        <input type="file" accept=".csv" onChange={handleImport} />
-        <Button onClick={handleExport}>Export</Button>
+        <div className="exportContainer">
+            <input type="file" accept=".csv" onChange={handleImport} />
+            <Button onClick={handleExport}>Export</Button>
+        </div>
     </div>
 }
 

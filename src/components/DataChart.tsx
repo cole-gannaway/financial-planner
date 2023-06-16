@@ -7,7 +7,7 @@ import { AggregateOption } from "../common/common-types";
 import { selectExpenses } from "../slices/expensesSlice";
 import { selectWages } from "../slices/wagesSlice";
 import { convertDataRowsIntoChartData } from "../utilities/chart-utils";
-import { DatePickerWrapper } from "./DatePickerWrapper";
+import { DatePickerWrapperMax, DatePickerWrapperMin } from "./DatePickerWrapper";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 Chart.register(Legend, LineController, LineElement, PointElement, LinearScale, TimeScale, Title, Tooltip);
 
@@ -16,7 +16,7 @@ const chartConfig: any = {
     data: {
         datasets: [
             {
-                label: 'Wallet',
+                label: 'Net Worth',
                 fill: true,
                 backgroundColor: "rgb(150, 105, 25, 0.8)",
                 borderColor: "rgb(150, 105, 25, 1)",
@@ -136,7 +136,11 @@ export default function DataChart() {
     }
 
     function handleStartTimeChange(date: number) {
-        dispatch(setStartTimeMs(date));
+        if (date > endTimeMs){
+            console.log("Don't pick a time before ")
+        } else {
+            dispatch(setStartTimeMs(date));
+        }
     }
     function handleEndTimeChange(date: number) {
         dispatch(setEndTimeMs(date));
@@ -144,25 +148,28 @@ export default function DataChart() {
 
     return (
         <div>
-            <div style={{width:150, display: "inline-block"}}><DatePickerWrapper value={startTimeMs} label={"Start Time"} onChange={handleStartTimeChange}></DatePickerWrapper></div>
-            <div style={{width:150, display: "inline-block"}}><DatePickerWrapper value={endTimeMs} label={"End Time"} onChange={handleEndTimeChange}></DatePickerWrapper></div>
-            <div style={{display: "inline-block"}}>
-                <FormControl >
-                    <InputLabel id="aggregate-by-label">Aggregate</InputLabel>
-                    <Select
-                        labelId="aggregate-by-label"
-                        id="aggregate-by"
-                        label="Aggregate"
-                        value={aggregateOption}
-                        onChange={handleAggregateOptionChange}
-                    >
-                        <MenuItem value={"day"}>Day</MenuItem>
-                        <MenuItem value={"month"}>Month</MenuItem>
-                        <MenuItem value={"year"}>Year</MenuItem>
-                    </Select>
-                </FormControl>
+            <div style={{display: "flex", justifyContent: "center", alignContent: "center", margin:"10px"}} className="chartConfiguration">
+                <div style={{width:200, margin:"10px"}}><DatePickerWrapperMax value={startTimeMs} label={"Start Time"} onChange={handleStartTimeChange} maxDate={endTimeMs}></DatePickerWrapperMax></div>
+                <div style={{width:200, margin:"10px"}}><DatePickerWrapperMin value={endTimeMs} label={"End Time"} onChange={handleEndTimeChange} minDate={startTimeMs}></DatePickerWrapperMin></div>
+                <div style={{width:100, margin:"10px", transform: "translate(0,10px)"}}>
+                    <FormControl 
+                    style={{width:"100%"}}>
+                        <InputLabel id="aggregate-by-label">Aggregate</InputLabel>
+                        <Select
+                            labelId="aggregate-by-label"
+                            id="aggregate-by"
+                            label="Aggregate"
+                            value={aggregateOption}
+                            onChange={handleAggregateOptionChange}
+                        >
+                            <MenuItem value={"day"}>Day</MenuItem>
+                            <MenuItem value={"month"}>Month</MenuItem>
+                            <MenuItem value={"year"}>Year</MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
             </div>
-            <div style={{maxWidth:1000, margin:"0 auto"}}>
+            <div className="chartContainer" style={{maxWidth:1000, margin:"0 auto"}}>
                 <div style={{ display:"block"}} >
                     <canvas  ref={chartContainer} />
                 </div>

@@ -24,8 +24,10 @@ const initialState: ChartState = {
   wages: [],
   finances: [],
   aggregateOption: 'day',
-  startTimeMs: Date.now(),
-  endTimeMs: defaultEndDate.getTime(),
+  // June 1st
+  startTimeMs: 1685674294000,
+  // December 31st
+  endTimeMs: 1704081042000,
 };
 
 export type ChartDataLabel = 'expenses' | 'wages' | 'finances';
