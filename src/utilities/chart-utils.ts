@@ -88,14 +88,18 @@ export function convertDataRowsIntoChartData(
     finances: financesChartPoints,
   };
 }
-function generateRecurringChartData(
+export function generateRecurringChartData(
   data: IDataRow,
   startDateMs: number,
   endDateMs: number
 ) {
   const date = new Date(data.date);
   const retVal: ChartPoint[] = [];
-  if (data.frequency === 'once' || !(endDateMs > startDateMs)) {
+  // filter out data that is not in the range
+  if (data.date < startDateMs || data.date > endDateMs) {
+    return [];
+  }
+  if (data.frequency === 'once') {
     retVal.push({ date: date.getTime(), amount: data.amount });
   } else {
     let timeMs = date.getTime();
@@ -109,7 +113,7 @@ function generateRecurringChartData(
   }
   return retVal;
 }
-function incrementDate(frequency: IFrequency, d: Date) {
+export function incrementDate(frequency: IFrequency, d: Date) {
   switch (frequency) {
     case 'daily':
       d.setDate(d.getDate() + 1);
@@ -127,7 +131,7 @@ function incrementDate(frequency: IFrequency, d: Date) {
       break;
   }
 }
-function aggregateChartDataByFrequency(
+export function aggregateChartDataByFrequency(
   data: ChartPoint[],
   aggregateOption: AggregateOption
 ) {
