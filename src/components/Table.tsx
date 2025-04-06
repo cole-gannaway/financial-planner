@@ -42,6 +42,9 @@ export function DataTable(props: ITableProps) {
                     for (let i = 1; i < rows.data.length; i++) {
                         const row = rows.data[i] as string[];
                         const dataRow = convertCSVRowIntoDataRow(row);
+                        if (dataRow.date === -1) {
+                            continue;
+                        }
                         dataRows.push(dataRow);
                     }
                     props.onImportComplete(dataRows);
