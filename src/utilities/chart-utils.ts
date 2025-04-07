@@ -54,10 +54,16 @@ export function convertDataRowsIntoChartData(
   expensesChartPoints.sort((a, b) => a.date - b.date);
   wagesChartPoints.sort((a, b) => a.date - b.date);
 
+  const expensesChartPointsFiltered = expensesChartPoints.filter((point) => point.date >= startDateMs && point.date <= endDateMs);
+  const wagesChartPointsFiltered = wagesChartPoints.filter((point) => point.date >= startDateMs && point.date <= endDateMs);
+
+
+
+
   // combine points
   const financesChartData: ChartPoint[] = [
-    ...expensesChartPoints,
-    ...wagesChartPoints,
+    ...expensesChartPointsFiltered,
+    ...wagesChartPointsFiltered,
   ];
 
   // aggregate points
@@ -83,8 +89,8 @@ export function convertDataRowsIntoChartData(
 
   // return results
   return {
-    expenses: expensesChartPoints,
-    wages: wagesChartPoints,
+    expenses: expensesChartPointsFiltered,
+    wages: wagesChartPointsFiltered,
     finances: financesChartPoints,
   };
 }
@@ -95,10 +101,6 @@ export function generateRecurringChartData(
 ) {
   const date = new Date(data.date);
   const retVal: ChartPoint[] = [];
-  // filter out data that is not in the range
-  if (data.date < startDateMs || data.date > endDateMs) {
-    return [];
-  }
   if (data.frequency === 'once') {
     retVal.push({ date: date.getTime(), amount: data.amount });
   } else {
